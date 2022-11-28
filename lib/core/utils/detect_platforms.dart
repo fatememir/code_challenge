@@ -11,7 +11,7 @@ class DetectPlatform{
 
   // DetectPlatform._() {}
 
-    Platforms DetectOperationSystem() {
+    Platforms detectOperationSystem() {
     // var op = {"android": test1(), "ios": test2(),"web":test2()};
     // if(kIsWeb){op["web"];}
     if (kIsWeb) return Platforms.WEB;
