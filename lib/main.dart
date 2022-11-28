@@ -1,19 +1,16 @@
-
 import 'package:code_challenge/core/routes/route_generator.dart';
 import 'package:code_challenge/core/utils/detect_platforms.dart';
+import 'package:code_challenge/core/utils/string_limiter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
 
-import 'package:injectable/injectable.dart';
 
 
 GetIt locator = GetIt.instance;
 
 void main() async{
-  // await configureInjection(Environment.prod);
   initLocator();
-
+  locator<DetectPlatform>().detectOperationSystem();
   runApp(const MyApp());
 }
 
@@ -33,6 +30,8 @@ class MyApp extends StatelessWidget {
 
 initLocator() {
   locator.registerFactory<DetectPlatform>(() => DetectPlatform());
+  locator.registerFactory<StringLimiter>(() => StringLimiter());
+
 }
 
 
