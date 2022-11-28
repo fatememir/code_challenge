@@ -1,30 +1,22 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DetectPlatform {
-  Platforms currentPlatform = Platforms.DONTCARE;
 
   Platforms detectOperationSystem() {
-    if (kIsWeb) {
-      currentPlatform = Platforms.ANDROID;
-      return Platforms.WEB;
-    }
+    if (kIsWeb) return Platforms.WEB;
     switch (Platform.operatingSystem) {
       case "ios":
-        currentPlatform = Platforms.IOS;
         return Platforms.IOS;
       case "android":
-        currentPlatform = Platforms.ANDROID;
         return Platforms.ANDROID;
       default:
-        currentPlatform = Platforms.DONTCARE;
         return Platforms.DONTCARE;
     }
   }
-  Color colorBasedOnCurrentPlatform() {
-    switch (currentPlatform) {
+  Color colorBasedOnPlatform(Platforms platform) {
+    switch (platform) {
       case Platforms.ANDROID:
         return const Color.fromRGBO(255, 0, 0, 1);
       case Platforms.IOS:

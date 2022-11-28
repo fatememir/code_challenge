@@ -15,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
+
+
   String? platformName;
 
   TextEditingController textController = TextEditingController();
@@ -29,7 +31,7 @@ class _MyHomePageState extends State<HomePage> {
             children: <Widget>[
               CustomBox(
                   color:
-                      locator<DetectPlatform>().colorBasedOnCurrentPlatform(),
+                      locator<DetectPlatform>().colorBasedOnPlatform(locator<DetectPlatform>().detectOperationSystem()),
                   platformName: platformName),
               const SizedBox(
                 height: 32,
@@ -45,7 +47,7 @@ class _MyHomePageState extends State<HomePage> {
                 onTap: () {
                   setState(() {
                     platformName =
-                        (locator<DetectPlatform>().currentPlatform.name);
+                        (locator<DetectPlatform>().detectOperationSystem().name);
                   });
                 },
               ),

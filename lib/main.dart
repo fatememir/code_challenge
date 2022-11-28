@@ -9,9 +9,10 @@ import 'package:get_it/get_it.dart';
 GetIt locator = GetIt.instance;
 
 void main() async{
-  initLocator();
-  locator<DetectPlatform>().detectOperationSystem();
   runApp(const MyApp());
+  initLocator();
+
+
 }
 
 class MyApp extends StatelessWidget {
