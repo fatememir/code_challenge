@@ -12,10 +12,7 @@ class StringLimiter{
       }
     }
     return limitedString;
-
   }
-
-
 }
 
 
