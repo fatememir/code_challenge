@@ -1,10 +1,14 @@
 import 'dart:io';
 
+import 'package:code_challenge/core/utils/detect_platforms.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
+
+GetIt locator = GetIt.instance;
 
 void main() {
   runApp(const MyApp());
+  initLocator();
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +25,9 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
+}
+initLocator() {
+  locator.registerFactory<DetectPlatform>(() => DetectPlatform());
 }
 
 class MyHomePage extends StatefulWidget {
@@ -49,7 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              DetectOperationSystem().name,
+
+              locator<DetectPlatform>().DetectOperationSystem().name,
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -58,19 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Platforms DetectOperationSystem() {
-    // var op = {"android": test1(), "ios": test2(),"web":test2()};
-    // if(kIsWeb){op["web"];}
-    if (kIsWeb) return Platforms.WEB;
-    switch (Platform.operatingSystem) {
-      case "ios":
-        return Platforms.IOS;
-      case "android":
-        return Platforms.ANDROID;
-      default:
-        return Platforms.DONTCARE;
-    }
-  }
+
 }
 
-enum Platforms { ANDROID, IOS, WEB, DONTCARE }
